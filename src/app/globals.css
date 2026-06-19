@@ -1,0 +1,423 @@
+@import "tailwindcss";
+
+/* ============================================================
+   GADGET-GHOR — Design System
+   Bold high-contrast: Golden Yellow + Black + White
+   Tailwind v4 theme tokens + custom CSS
+   ============================================================ */
+
+@theme {
+  /* ---- Brand: Golden Yellow (primary fills / highlights on dark) ---- */
+  --color-brand-50: #fffce6;
+  --color-brand-100: #fff6bf;
+  --color-brand-200: #ffec85;
+  --color-brand-300: #ffdd47;
+  --color-brand-400: #facc15;
+  --color-brand-500: #eab308;
+  --color-brand-600: #ca8a04;
+  --color-brand-700: #a16207;
+  --color-brand-800: #854d0e;
+  --color-brand-900: #713f12;
+  --color-brand-950: #422006;
+
+  /* ---- Accent: Amber/Gold (stars, secondary warm) ---- */
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+
+  /* ---- Teal: readable highlight word on white ---- */
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+
+  /* ---- Ink: neutral black / grey scale ---- */
+  --color-ink-50: #fafafa;
+  --color-ink-100: #f4f4f5;
+  --color-ink-200: #e4e4e7;
+  --color-ink-300: #d4d4d8;
+  --color-ink-400: #a1a1aa;
+  --color-ink-500: #71717a;
+  --color-ink-600: #52525b;
+  --color-ink-700: #3f3f46;
+  --color-ink-800: #27272a;
+  --color-ink-900: #161618;
+  --color-ink-950: #0a0a0b;
+
+  /* ---- Fonts (wired via next/font in layout) ---- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Radii ---- */
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+
+  /* ---- Custom easing & timings ---- */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ---- Keyframe animations ---- */
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-shine: shine 4.5s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+  60%,
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f7f7f8;
+    --fg: #0a0a0b;
+    color-scheme: light;
+  }
+
+  * {
+    border-color: var(--color-ink-200);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-400);
+    color: var(--color-ink-950);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-100);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-brand-400);
+    border-radius: 99px;
+    border: 2px solid var(--color-ink-100);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-500);
+  }
+}
+
+/* ============================================================
+   COMPONENTS / UTILITIES (custom CSS)
+   ============================================================ */
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 1024px) {
+    .container-x {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Highlighted text */
+  .text-highlight {
+    color: var(--color-teal-500);
+  }
+  .text-gold {
+    color: var(--color-brand-400);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    padding: 0.85rem 1.6rem;
+    transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease,
+      background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+
+  /* Primary = golden yellow with dark text (Buy Now / Subscribe) */
+  .btn-primary {
+    background: var(--color-brand-400);
+    color: var(--color-ink-950);
+    box-shadow: 0 10px 30px -12px rgba(250, 204, 21, 0.7);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    background: var(--color-brand-300);
+    box-shadow: 0 16px 36px -12px rgba(250, 204, 21, 0.85);
+  }
+
+  /* Dark = black with white text */
+  .btn-dark {
+    background: var(--color-ink-950);
+    color: #fff;
+  }
+  .btn-dark:hover {
+    transform: translateY(-2px);
+    background: var(--color-ink-800);
+  }
+
+  /* Outline on light bg */
+  .btn-outline {
+    border: 1.5px solid var(--color-ink-300);
+    color: var(--color-ink-950);
+    background: #fff;
+  }
+  .btn-outline:hover {
+    border-color: var(--color-ink-950);
+    background: var(--color-ink-950);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  /* Outline on dark bg (Learn More on hero) */
+  .btn-outline-light {
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    color: #fff;
+    background: transparent;
+  }
+  .btn-outline-light:hover {
+    background: var(--color-brand-400);
+    border-color: var(--color-brand-400);
+    color: var(--color-ink-950);
+    transform: translateY(-2px);
+  }
+
+  /* Pills / badges */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: var(--color-brand-50);
+    color: var(--color-brand-700);
+    border: 1px solid var(--color-brand-200);
+  }
+  .eyebrow-dark {
+    background: rgba(250, 204, 21, 0.14);
+    color: var(--color-brand-400);
+    border: 1px solid rgba(250, 204, 21, 0.3);
+  }
+
+  /* yellow chip badge (product) */
+  .chip-yellow {
+    background: var(--color-brand-400);
+    color: var(--color-ink-950);
+    font-weight: 700;
+  }
+
+  /* Cards */
+  .card {
+    background: #fff;
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-3xl, 1.5rem);
+    transition: transform 0.35s var(--ease-spring), box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -28px rgba(10, 10, 11, 0.3);
+    border-color: var(--color-ink-300);
+  }
+
+  /* Glass panel for dark sections */
+  .glass {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+  }
+
+  /* Soft white floating card / pill (on dark hero) */
+  .float-pill {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 999px;
+  }
+
+  /* Decorative blurred blobs */
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Shine sweep for promo banners */
+  .shine {
+    background-image: linear-gradient(
+      110deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 75%
+    );
+    background-size: 220% 100%;
+    animation: var(--animate-shine);
+  }
+
+  /* Grid background pattern (on dark) */
+  .grid-pattern {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.06) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.06) 1px,
+        transparent 1px
+      );
+    background-size: 56px 56px;
+  }
+
+  /* Soft dotted pattern */
+  .dot-pattern {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.08) 1.2px,
+      transparent 1.2px
+    );
+    background-size: 24px 24px;
+  }
+  .dot-pattern-dark {
+    background-image: radial-gradient(
+      var(--color-ink-200) 1.1px,
+      transparent 1.1px
+    );
+    background-size: 22px 22px;
+  }
+}
+
+@layer utilities {
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .pause-hover:hover {
+    animation-play-state: paused;
+  }
+
+  /* Outlined display text (big watermark) */
+  .text-stroke {
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+    color: transparent;
+  }
+}
+
+/* Swiper overrides to match brand */
+.swiper-pagination-bullet {
+  background: var(--color-ink-300) !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active {
+  background: var(--color-brand-400) !important;
+  width: 26px !important;
+  border-radius: 99px !important;
+}
