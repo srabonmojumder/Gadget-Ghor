@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Inter, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,17 +8,20 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const poppins = Poppins({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-display",
 });
 
 export const metadata: Metadata = {
-  title: "Gadget-Ghor — Next-Gen Electronics & Smart Gadgets Store",
+  title: {
+    default: "Gadget-Ghor — Next-Gen Electronics & Smart Gadgets Store",
+    template: "%s · Gadget-Ghor",
+  },
   description:
-    "Gadget-Ghor is your modern destination for premium electronics, smart gadgets, audio gear and accessories. Unbeatable prices, lightning-fast delivery and a seamless shopping experience.",
+    "Gadget-Ghor is your premium destination for electronics, smart gadgets, audio gear, laptops and gaming accessories — unbeatable prices, fast delivery, seamless shopping.",
   keywords: [
     "Gadget-Ghor",
     "electronics store",
@@ -26,10 +29,9 @@ export const metadata: Metadata = {
     "smartphones",
     "laptops",
     "audio",
-    "smart home",
     "gaming",
   ],
-  authors: [{ name: "Gadget-Ghor" }],
+  metadataBase: new URL("https://gadget-ghor.com"),
   openGraph: {
     title: "Gadget-Ghor — Next-Gen Electronics & Smart Gadgets Store",
     description:
@@ -40,11 +42,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${bricolage.variable}`}>
       <body>{children}</body>
     </html>
   );

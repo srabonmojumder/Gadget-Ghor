@@ -1,52 +1,39 @@
 @import "tailwindcss";
 
 /* ============================================================
-   GADGET-GHOR — Design System
-   Bold high-contrast: Golden Yellow + Black + White
-   Tailwind v4 theme tokens + custom CSS
+   GADGET-GHOR — Dark premium tech-store design system
+   bg #070707 · cards #0E0E0E · accent #FCD33D · text #FFF/#BDBDBD
+   Tailwind v4 (@theme) — gives bg-accent / text-accent / bg-dark
    ============================================================ */
 
 @theme {
-  /* ---- Brand: Golden Yellow (primary fills / highlights on dark) ---- */
-  --color-brand-50: #fffce6;
-  --color-brand-100: #fff6bf;
-  --color-brand-200: #ffec85;
-  --color-brand-300: #ffdd47;
-  --color-brand-400: #facc15;
-  --color-brand-500: #eab308;
-  --color-brand-600: #ca8a04;
-  --color-brand-700: #a16207;
-  --color-brand-800: #854d0e;
-  --color-brand-900: #713f12;
-  --color-brand-950: #422006;
+  /* ---- Accent: bright yellow (#FCD33D) ---- */
+  --color-accent: #fcd33d;
+  --color-brand-50: #fffbe6;
+  --color-brand-100: #fff3bf;
+  --color-brand-200: #ffe98a;
+  --color-brand-300: #fde06a;
+  --color-brand-400: #fcd33d;
+  --color-brand-500: #f2c200;
+  --color-brand-600: #d9ad00;
+  --color-brand-700: #b08c00;
+  --color-brand-800: #8a6e00;
+  --color-brand-900: #5e4b00;
 
-  /* ---- Accent: Amber/Gold (stars, secondary warm) ---- */
-  --color-accent-50: #fffbeb;
-  --color-accent-100: #fef3c7;
-  --color-accent-200: #fde68a;
-  --color-accent-300: #fcd34d;
-  --color-accent-400: #fbbf24;
-  --color-accent-500: #f59e0b;
-  --color-accent-600: #d97706;
-  --color-accent-700: #b45309;
-
-  /* ---- Teal: readable highlight word on white ---- */
-  --color-teal-400: #2dd4bf;
-  --color-teal-500: #14b8a6;
-  --color-teal-600: #0d9488;
-
-  /* ---- Ink: neutral black / grey scale ---- */
-  --color-ink-50: #fafafa;
-  --color-ink-100: #f4f4f5;
-  --color-ink-200: #e4e4e7;
-  --color-ink-300: #d4d4d8;
-  --color-ink-400: #a1a1aa;
-  --color-ink-500: #71717a;
-  --color-ink-600: #52525b;
-  --color-ink-700: #3f3f46;
-  --color-ink-800: #27272a;
-  --color-ink-900: #161618;
-  --color-ink-950: #0a0a0b;
+  /* ---- Dark / ink neutral scale ---- */
+  --color-dark: #070707;
+  --color-ink-50: #f6f6f6;
+  --color-ink-100: #e9e9e9;
+  --color-ink-200: #d4d4d4;
+  --color-ink-300: #bdbdbd; /* secondary text */
+  --color-ink-400: #888888; /* muted text */
+  --color-ink-500: #5a5a5a;
+  --color-ink-600: #3a3a3a;
+  --color-ink-700: #262626;
+  --color-ink-800: #161616;
+  --color-ink-850: #111111; /* card alt */
+  --color-ink-900: #0e0e0e; /* card */
+  --color-ink-950: #070707; /* page bg */
 
   /* ---- Fonts (wired via next/font in layout) ---- */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -56,16 +43,15 @@
   --radius-4xl: 2rem;
   --radius-5xl: 2.5rem;
 
-  /* ---- Custom easing & timings ---- */
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* ---- Keyframe animations ---- */
-  --animate-marquee: marquee 32s linear infinite;
+  /* ---- Animations ---- */
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee-fast: marquee 18s linear infinite;
+  --animate-marquee-up: marquee-up 40s linear infinite;
+  --animate-marquee-down: marquee-down 48s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
-  --animate-float-slow: float 9s ease-in-out infinite;
-  --animate-spin-slow: spin 14s linear infinite;
-  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
-  --animate-shine: shine 4.5s ease-in-out infinite;
+  --animate-spin-slow: spin 16s linear infinite;
 }
 
 @keyframes marquee {
@@ -83,29 +69,25 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-18px);
+    transform: translateY(-16px);
   }
 }
 
-@keyframes pulse-glow {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scale(1);
+@keyframes marquee-up {
+  from {
+    transform: translateY(0);
   }
-  50% {
-    opacity: 1;
-    transform: scale(1.08);
+  to {
+    transform: translateY(-50%);
   }
 }
 
-@keyframes shine {
-  0% {
-    background-position: -200% center;
+@keyframes marquee-down {
+  from {
+    transform: translateY(-50%);
   }
-  60%,
-  100% {
-    background-position: 200% center;
+  to {
+    transform: translateY(0);
   }
 }
 
@@ -114,14 +96,11 @@
    ============================================================ */
 @layer base {
   :root {
-    --bg: #ffffff;
-    --bg-soft: #f7f7f8;
-    --fg: #0a0a0b;
-    color-scheme: light;
+    color-scheme: dark;
   }
 
   * {
-    border-color: var(--color-ink-200);
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
   html {
@@ -130,8 +109,8 @@
   }
 
   body {
-    background-color: var(--bg);
-    color: var(--fg);
+    background-color: var(--color-ink-950);
+    color: #ffffff;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -144,41 +123,40 @@
   h4,
   h5 {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1.08;
   }
 
   ::selection {
-    background-color: var(--color-brand-400);
-    color: var(--color-ink-950);
+    background-color: var(--color-accent);
+    color: #070707;
   }
 
-  /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 11px;
     height: 11px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-ink-100);
+    background: var(--color-ink-900);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-brand-400);
+    background: var(--color-ink-700);
     border-radius: 99px;
-    border: 2px solid var(--color-ink-100);
+    border: 2px solid var(--color-ink-900);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-brand-500);
+    background: var(--color-accent);
   }
 }
 
 /* ============================================================
-   COMPONENTS / UTILITIES (custom CSS)
+   COMPONENTS (custom CSS)
    ============================================================ */
 @layer components {
   .container-x {
     width: 100%;
-    max-width: 80rem; /* 1280px */
+    max-width: 80rem;
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
@@ -186,14 +164,6 @@
     .container-x {
       padding-inline: 2rem;
     }
-  }
-
-  /* Highlighted text */
-  .text-highlight {
-    color: var(--color-teal-500);
-  }
-  .text-gold {
-    color: var(--color-brand-400);
   }
 
   /* Buttons */
@@ -215,179 +185,182 @@
     transform: scale(0.97);
   }
 
-  /* Primary = golden yellow with dark text (Buy Now / Subscribe) */
+  /* Primary = yellow bg + black text */
   .btn-primary {
-    background: var(--color-brand-400);
-    color: var(--color-ink-950);
-    box-shadow: 0 10px 30px -12px rgba(250, 204, 21, 0.7);
+    background: var(--color-accent);
+    color: #070707;
+    box-shadow: 0 10px 30px -12px rgba(252, 211, 61, 0.55);
   }
   .btn-primary:hover {
     transform: translateY(-2px);
-    background: var(--color-brand-300);
-    box-shadow: 0 16px 36px -12px rgba(250, 204, 21, 0.85);
+    background: #fdde6a;
+    box-shadow: 0 16px 38px -12px rgba(252, 211, 61, 0.75);
   }
 
-  /* Dark = black with white text */
-  .btn-dark {
-    background: var(--color-ink-950);
-    color: #fff;
-  }
-  .btn-dark:hover {
-    transform: translateY(-2px);
-    background: var(--color-ink-800);
-  }
-
-  /* Outline on light bg */
-  .btn-outline {
-    border: 1.5px solid var(--color-ink-300);
-    color: var(--color-ink-950);
-    background: #fff;
-  }
-  .btn-outline:hover {
-    border-color: var(--color-ink-950);
-    background: var(--color-ink-950);
-    color: #fff;
-    transform: translateY(-2px);
-  }
-
-  /* Outline on dark bg (Learn More on hero) */
-  .btn-outline-light {
-    border: 1.5px solid rgba(255, 255, 255, 0.35);
-    color: #fff;
+  /* Secondary = transparent + border */
+  .btn-secondary {
     background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
   }
-  .btn-outline-light:hover {
-    background: var(--color-brand-400);
-    border-color: var(--color-brand-400);
-    color: var(--color-ink-950);
+  .btn-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
     transform: translateY(-2px);
   }
 
-  /* Pills / badges */
+  /* Light = white bg black text (on dark cards) */
+  .btn-light {
+    background: #fff;
+    color: #070707;
+  }
+  .btn-light:hover {
+    transform: translateY(-2px);
+    background: var(--color-accent);
+  }
+
+  /* Pills / eyebrow */
   .eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 0.4rem 0.9rem;
     border-radius: 999px;
-    background: var(--color-brand-50);
-    color: var(--color-brand-700);
-    border: 1px solid var(--color-brand-200);
-  }
-  .eyebrow-dark {
-    background: rgba(250, 204, 21, 0.14);
-    color: var(--color-brand-400);
-    border: 1px solid rgba(250, 204, 21, 0.3);
+    background: rgba(252, 211, 61, 0.1);
+    color: var(--color-accent);
+    border: 1px solid rgba(252, 211, 61, 0.25);
   }
 
-  /* yellow chip badge (product) */
-  .chip-yellow {
-    background: var(--color-brand-400);
-    color: var(--color-ink-950);
-    font-weight: 700;
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-ink-300);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   /* Cards */
   .card {
-    background: #fff;
-    border: 1px solid var(--color-ink-200);
-    border-radius: var(--radius-3xl, 1.5rem);
+    background: var(--color-ink-900);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
     transition: transform 0.35s var(--ease-spring), box-shadow 0.35s ease,
       border-color 0.35s ease;
   }
   .card-hover:hover {
     transform: translateY(-6px);
-    box-shadow: 0 30px 60px -28px rgba(10, 10, 11, 0.3);
-    border-color: var(--color-ink-300);
+    border-color: rgba(252, 211, 61, 0.4);
+    box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.8);
   }
 
-  /* Glass panel for dark sections */
-  .glass {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(14px);
+  /* Glow */
+  .glow-accent {
+    box-shadow: 0 0 0 1px rgba(252, 211, 61, 0.2),
+      0 20px 60px -20px rgba(252, 211, 61, 0.25);
   }
 
-  /* Soft white floating card / pill (on dark hero) */
-  .float-pill {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 999px;
-  }
-
-  /* Decorative blurred blobs */
-  .blob {
-    position: absolute;
-    border-radius: 9999px;
-    filter: blur(80px);
-    opacity: 0.45;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Shine sweep for promo banners */
-  .shine {
-    background-image: linear-gradient(
-      110deg,
-      transparent 25%,
-      rgba(255, 255, 255, 0.18) 50%,
-      transparent 75%
-    );
-    background-size: 220% 100%;
-    animation: var(--animate-shine);
-  }
-
-  /* Grid background pattern (on dark) */
+  /* Background patterns */
   .grid-pattern {
     background-image: linear-gradient(
         to right,
-        rgba(255, 255, 255, 0.06) 1px,
+        rgba(255, 255, 255, 0.04) 1px,
         transparent 1px
       ),
       linear-gradient(
         to bottom,
-        rgba(255, 255, 255, 0.06) 1px,
+        rgba(255, 255, 255, 0.04) 1px,
         transparent 1px
       );
-    background-size: 56px 56px;
+    background-size: 60px 60px;
   }
-
-  /* Soft dotted pattern */
+  .grid-pattern-lg {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px
+      );
+    background-size: 120px 120px;
+  }
+  .grid-pattern-bold {
+    /* vertical lines only — thicker, with big gaps */
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.09) 2px,
+      transparent 2px
+    );
+    background-size: 280px 100%;
+  }
   .dot-pattern {
     background-image: radial-gradient(
-      rgba(255, 255, 255, 0.08) 1.2px,
+      rgba(255, 255, 255, 0.06) 1.2px,
       transparent 1.2px
     );
-    background-size: 24px 24px;
-  }
-  .dot-pattern-dark {
-    background-image: radial-gradient(
-      var(--color-ink-200) 1.1px,
-      transparent 1.1px
-    );
     background-size: 22px 22px;
+  }
+
+  /* Decorative blurred blob */
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
   }
 }
 
 @layer utilities {
+  .text-muted {
+    color: var(--color-ink-300);
+  }
+  .text-faint {
+    color: var(--color-ink-400);
+  }
+
   .mask-fade-x {
     -webkit-mask-image: linear-gradient(
       to right,
       transparent,
-      #000 12%,
-      #000 88%,
+      #000 8%,
+      #000 92%,
       transparent
     );
     mask-image: linear-gradient(
       to right,
       transparent,
-      #000 12%,
-      #000 88%,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+  }
+
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 10%,
+      #000 90%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 10%,
+      #000 90%,
       transparent
     );
   }
@@ -400,24 +373,23 @@
     scrollbar-width: none;
   }
 
-  .pause-hover:hover {
-    animation-play-state: paused;
-  }
-
-  /* Outlined display text (big watermark) */
   .text-stroke {
-    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.14);
+    color: transparent;
+  }
+  .text-stroke-accent {
+    -webkit-text-stroke: 2px var(--color-accent);
     color: transparent;
   }
 }
 
-/* Swiper overrides to match brand */
+/* Swiper overrides */
 .swiper-pagination-bullet {
-  background: var(--color-ink-300) !important;
+  background: var(--color-ink-500) !important;
   opacity: 1 !important;
 }
 .swiper-pagination-bullet-active {
-  background: var(--color-brand-400) !important;
+  background: var(--color-accent) !important;
   width: 26px !important;
   border-radius: 99px !important;
 }
