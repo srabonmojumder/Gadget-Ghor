@@ -101,9 +101,20 @@ export default function CartDrawer() {
             <p className="mt-1 text-xs text-ink-400">
               Shipping &amp; taxes calculated at checkout.
             </p>
-            <button className="btn btn-primary mt-4 w-full">
+            <Link
+              href="/checkout"
+              onClick={closePanel}
+              className="btn btn-primary mt-4 w-full"
+            >
               Proceed to Checkout
-            </button>
+            </Link>
+            <Link
+              href="/cart"
+              onClick={closePanel}
+              className="mt-2 block text-center text-sm text-ink-400 transition hover:text-accent"
+            >
+              View full cart
+            </Link>
           </div>
         </>
       )}

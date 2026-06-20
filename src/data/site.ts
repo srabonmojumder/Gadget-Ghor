@@ -63,10 +63,10 @@ export const FOOTER_COLUMNS = [
     title: "Support",
     links: [
       { label: "Warranty & Support", href: "/warranty" },
-      { label: "Order Tracking", href: "/contact" },
-      { label: "Returns & Refunds", href: "/warranty" },
-      { label: "FAQ", href: "/warranty" },
-      { label: "Contact Us", href: "/contact" },
+      { label: "Order Tracking", href: "/track" },
+      { label: "Returns & Refunds", href: "/returns" },
+      { label: "FAQ", href: "/faq" },
+      { label: "My Account", href: "/account" },
     ],
   },
 ];

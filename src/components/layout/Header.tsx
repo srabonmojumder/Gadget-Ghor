@@ -147,7 +147,7 @@ export default function Header() {
               <Search size={20} />
             </button>
             <Link
-              href="/contact"
+              href="/account"
               aria-label="Account"
               className="hidden h-10 w-10 place-items-center rounded-full text-ink-200 transition hover:bg-white/10 hover:text-white sm:grid"
             >

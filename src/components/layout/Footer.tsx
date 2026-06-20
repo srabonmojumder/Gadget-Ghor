@@ -163,14 +163,14 @@ export default function Footer() {
             © 2026 {SITE.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
-            <Link href="/warranty" className="hover:text-white">
+            <Link href="/privacy" className="hover:text-white">
               Privacy Policy
             </Link>
-            <Link href="/warranty" className="hover:text-white">
+            <Link href="/terms" className="hover:text-white">
               Terms of Service
             </Link>
-            <Link href="/contact" className="hover:text-white">
-              Cookies
+            <Link href="/faq" className="hover:text-white">
+              FAQ
             </Link>
           </div>
         </div>
