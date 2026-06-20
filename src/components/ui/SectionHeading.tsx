@@ -6,7 +6,7 @@ type Props = {
   title: ReactNode;
   subtitle?: string;
   align?: "center" | "left";
-  dark?: boolean;
+  className?: string;
 };
 
 export default function SectionHeading({
@@ -14,37 +14,20 @@ export default function SectionHeading({
   title,
   subtitle,
   align = "center",
-  dark = false,
+  className = "",
 }: Props) {
   return (
     <Reveal
-      className={
-        align === "center"
-          ? "mx-auto max-w-2xl text-center"
-          : "max-w-2xl text-left"
-      }
+      className={`${
+        align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"
+      } ${className}`}
     >
-      {eyebrow && (
-        <span className={dark ? "eyebrow eyebrow-dark" : "eyebrow"}>
-          <span className="h-1.5 w-1.5 rounded-full bg-current" />
-          {eyebrow}
-        </span>
-      )}
-      <h2
-        className={`mt-4 text-3xl sm:text-4xl lg:text-5xl ${
-          dark ? "text-white" : "text-ink-950"
-        }`}
-      >
+      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+      <h2 className="mt-4 text-3xl text-white sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {subtitle && (
-        <p
-          className={`mt-4 text-base sm:text-lg ${
-            dark ? "text-ink-300" : "text-ink-500"
-          }`}
-        >
-          {subtitle}
-        </p>
+        <p className="mt-4 text-base text-muted sm:text-lg">{subtitle}</p>
       )}
     </Reveal>
   );
