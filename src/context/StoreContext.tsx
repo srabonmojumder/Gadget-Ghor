@@ -21,6 +21,7 @@ type StoreCtx = {
   closePanel: () => void;
   addToCart: (slug: string, qty?: number) => void;
   removeFromCart: (slug: string) => void;
+  clearCart: () => void;
   setQty: (slug: string, qty: number) => void;
   toggleWishlist: (slug: string) => void;
   isWished: (slug: string) => boolean;
@@ -86,6 +87,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     []
   );
 
+  const clearCart = useCallback(() => setCart([]), []);
+
   const setQty = useCallback(
     (slug: string, qty: number) =>
       setCart((p) =>
@@ -126,6 +129,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         closePanel: () => setPanel(null),
         addToCart,
         removeFromCart,
+        clearCart,
         setQty,
         toggleWishlist,
         isWished,
